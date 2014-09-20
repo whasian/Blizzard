@@ -1,0 +1,5 @@
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\DataAccess.dll
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\DataAccess.pdb
+C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.dll
+C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.pdb
