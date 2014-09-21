@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Character
+namespace Business
 {
     public enum CharacterRace { Orc, Tauren, BloodElf, Human, Gnome, Worgen }
     public enum CharacterClass { Warrior, Druid, DeathKnight, Mage }
@@ -14,7 +14,22 @@ namespace Business.Character
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public short Level { get; set; }
+        private short _level;
+        public short Level
+        {
+            get
+            {
+                return _level;
+            }
+            set
+            {
+                if(value < 1 || value > 100)
+                {
+                    throw new Exception("Invalid level");
+                }
+                _level = value;
+            }
+        }
         public CharacterFaction Faction { get; set; }
         public CharacterRace Race { get; set; }
         public CharacterClass Class { get; set; }
@@ -29,6 +44,7 @@ namespace Business.Character
             this.Faction = characterFaction;
             this.Race = characterRace;
             this.Class = characterClass;
+            this.Active = true;
             
             if(characterClass == CharacterClass.DeathKnight)
             {

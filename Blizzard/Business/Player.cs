@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.Character;
+using Business;
 
-namespace Business.Player
+namespace Business
 {
     public class Player
     {
-        public List<Character.Character> Characters { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public bool IsAdmin { get; set; }
+        public List<Character> Characters { get; set; }
         
-        public Player()
+        public Player(string userName, string password)
         {
-
+            this.UserName = userName;
+            this.Password = password;
+            this.Characters = new List<Character>();
         }
 
-        public Character.Character AddCharacter(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
+        public Character AddCharacter(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
         {
             if(characterClass == CharacterClass.DeathKnight)
             {
@@ -31,12 +36,12 @@ namespace Business.Player
                 throw new Exception("Stay loyal to your faction and only create characters within the same faction");
             }
 
-            return new Character.Character(name, characterFaction, characterRace, characterClass);
+            return new Character(name, characterFaction, characterRace, characterClass);
         }
 
         public void Delete(Guid characterId)
         {
-            Character.Character c = this.Characters.FirstOrDefault(x => x.Id == characterId);
+            Character c = this.Characters.FirstOrDefault(x => x.Id == characterId);
 
             if(c == null)
             {
@@ -52,7 +57,7 @@ namespace Business.Player
 
         public void Undelete(Guid characterId)
         {
-            Character.Character c = this.Characters.FirstOrDefault(x => x.Id == characterId);
+            Character c = this.Characters.FirstOrDefault(x => x.Id == characterId);
 
             if (c == null)
             {

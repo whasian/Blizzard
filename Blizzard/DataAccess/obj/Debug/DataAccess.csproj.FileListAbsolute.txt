@@ -3,3 +3,7 @@ C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\DataAccess.pdb
 C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.dll
 C:\repos\Blizzard\Blizzard\DataAccess\obj\Debug\DataAccess.pdb
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\ClassLibrary1.dll
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\ClassLibrary1.pdb
+C:\repos\Blizzard\Blizzard\DataAccess\bin\Debug\Newtonsoft.Json.xml
