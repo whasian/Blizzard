@@ -1,0 +1,18 @@
+[
+  {
+    "UserName": "test",
+    "Password": "iÜŒÃ;\u0014\u0016{\u0002T¨™!«¦Áf½#Î\u0001\u0004O=ßÒ{#ÁlÏ",
+    "IsAdmin": true,
+    "Characters": [
+      {
+        "Id": "84172b2f-4b4a-4082-a720-ffeee52e8f2c",
+        "Name": "fucktard",
+        "Level": 1,
+        "Faction": 0,
+        "Race": 1,
+        "Class": 1,
+        "Active": false
+      }
+    ]
+  }
+]
