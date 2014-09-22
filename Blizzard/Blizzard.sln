@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "Blizzard\MVC.csproj", "{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{CEEA2BF6-2C57-4037-8617-71AD4243172D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B47BE367-0D38-4771-826B-9653D657D67F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{B47BE367-0D38-4771-826B-9653D657D67F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{CEEA2BF6-2C57-4037-8617-71AD4243172D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessRules", "BusinessRules\BusinessRules.csproj", "{A6511B35-80F3-490D-A2B8-36B5E135305A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{A6511B35-80F3-490D-A2B8-36B5E135305A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B47BE367-0D38-4771-826B-9653D657D67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B47BE367-0D38-4771-826B-9653D657D67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B47BE367-0D38-4771-826B-9653D657D67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B47BE367-0D38-4771-826B-9653D657D67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEA2BF6-2C57-4037-8617-71AD4243172D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6511B35-80F3-490D-A2B8-36B5E135305A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6511B35-80F3-490D-A2B8-36B5E135305A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6511B35-80F3-490D-A2B8-36B5E135305A}.Release|Any CPU.ActiveCfg = Release|Any CPU

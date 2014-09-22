@@ -1,0 +1,72 @@
+﻿@model Blizzard.Models.CharacterModel
+
+@{
+    ViewBag.Title = "View Character";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <hr />
+        <div class="form-group">
+            <label class="col-md-2 control-label">Name</label>
+            <div class="col-md-10">
+                <label class="form-control">@Model.Name</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Faction</label>
+            <div class="col-md-10">
+                <label class="form-control">@Model.Faction</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Race</label>
+            <div class="col-md-10">
+                <label id="RaceLBL" class="form-control">@Model.Race</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Class</label>
+            <div class="col-md-10">
+                <label class="form-control">@Model.Class</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Level</label>
+            <div class="col-md-10">
+                <label class="form-control">@Model.Level</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Active</label>
+            <div class="col-md-10">
+                <label class="form-control">@Model.Active</label>
+            </div>
+        </div>
+        <div class="form-group">
+            @if(Model.Active)
+            {
+                <span>@Html.ActionLink("Deactivate Character", "ActiveToggle", "Character", new { Id = Url.RequestContext.RouteData.Values["Id"] }, new { @class = "col-md-12" })</span>
+            }
+            else
+            {
+                <span>@Html.ActionLink("Activate Character", "ActiveToggle", "Character", new { Id = Url.RequestContext.RouteData.Values["Id"] }, new { @class = "col-md-12" })</span>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <img id="RaceImage" width="100%" />
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $().ready(function () {
+        var race = $('#RaceLBL');
+        $('#RaceImage').attr('src', GetRaceImage(race.text()))
+    });
+</script>
+
+}

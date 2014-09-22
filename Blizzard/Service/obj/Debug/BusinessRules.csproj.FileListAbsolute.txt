@@ -1,0 +1,11 @@
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\BusinessRules.dll
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\BusinessRules.pdb
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\ClassLibrary1.dll
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\DataAccess.dll
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\ClassLibrary1.pdb
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\DataAccess.pdb
+C:\repos\Blizzard\Blizzard\BusinessRules\obj\Debug\BusinessRules.csprojResolveAssemblyReference.cache
+C:\repos\Blizzard\Blizzard\BusinessRules\obj\Debug\BusinessRules.dll
+C:\repos\Blizzard\Blizzard\BusinessRules\obj\Debug\BusinessRules.pdb
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\Newtonsoft.Json.dll
+C:\repos\Blizzard\Blizzard\BusinessRules\bin\Debug\Newtonsoft.Json.xml

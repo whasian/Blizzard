@@ -1,0 +1,31 @@
+﻿@model Blizzard.Models.PlayersModel
+
+@{
+    ViewBag.Title = "Player Admin";
+}
+
+<div class="col-md-12" style="text-align:center">
+    <img width="80%" src="~/Content/images/World-Of-Warcraft-Logo.jpg" />
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table-bordered col-md-12">
+            <thead>
+                <tr>
+                    <td>UserName</td>
+                    <td>IsAdmin</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in Model.Players)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(player.UserName, "PlayerEdit", "Admin", new { id = player.UserName }, null)</td>
+                        <td>@player.IsAdmin</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
