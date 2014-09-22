@@ -24,6 +24,8 @@ namespace BusinessRules
             CharacterFaction cf;
             CharacterRace cr;
             CharacterClass cc;
+
+            List<Character> characters = GetCharacter();
             
             if(!Enum.TryParse<CharacterFaction>(faction, out cf))
             {
@@ -40,9 +42,14 @@ namespace BusinessRules
                 throw new Exception("Class invalid");
             }
 
-            if(cc == CharacterClass.DeathKnight && !GetCharacter().Exists(x => x.Active && x.Level >= 55))
+            if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
             {
                 throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
+            }
+
+            if(characters.Count(x => x.Faction != cf) > 0)
+            {
+                throw new Exception("All Characters must be part of the " + characters.First().Faction.ToString());
             }
 
             Character newCharacter = new Character(name, cf, cr, cc);
@@ -51,11 +58,13 @@ namespace BusinessRules
             p.AddCharacter(UserName, newCharacter);
         }
 
-        public void EditCharacter(Guid id, string name, string faction, string race, string characterclass)
+        public void EditCharacter(Guid id, string name, string faction, string race, string characterclass, short level, bool Active)
         {
             CharacterFaction cf;
             CharacterRace cr;
             CharacterClass cc;
+
+            List<Character> characters = GetCharacter();
 
             if (!Enum.TryParse<CharacterFaction>(faction, out cf))
             {
@@ -72,12 +81,19 @@ namespace BusinessRules
                 throw new Exception("Class invalid");
             }
 
-            if(cc == CharacterClass.DeathKnight && !GetCharacter().Exists(x => x.Active && x.Level >= 55))
+            if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
             {
                 throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
             }
 
+            if (characters.Count(x => x.Faction != cf && x.Id != id) > 0)
+            {
+                throw new Exception("All Characters must be part of the " + characters.First().Faction.ToString());
+            }
+
             Character newCharacter = new Character(name, cf, cr, cc);
+            newCharacter.Level = level;
+            newCharacter.Active = Active;
 
             PlayerData p = new PlayerData(FileName);
             p.EditCharacter(UserName, id, newCharacter);

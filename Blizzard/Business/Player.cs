@@ -13,7 +13,11 @@ namespace Business
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
         public List<Character> Characters { get; set; }
-        
+
+        public Player()
+        {
+        }
+
         public Player(string userName, string password)
         {
             this.UserName = userName;

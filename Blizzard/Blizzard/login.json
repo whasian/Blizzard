@@ -5,14 +5,20 @@
     "IsAdmin": true,
     "Characters": [
       {
-        "Id": "84172b2f-4b4a-4082-a720-ffeee52e8f2c",
+        "Id": "b74ce9ba-9085-4ef6-913f-846e0ee9a26a",
         "Name": "fucktard",
-        "Level": 1,
-        "Faction": 0,
-        "Race": 1,
-        "Class": 1,
-        "Active": false
+        "Level": 100,
+        "Faction": 1,
+        "Race": 3,
+        "Class": 0,
+        "Active": true
       }
     ]
+  },
+  {
+    "UserName": "test2",
+    "Password": "iÜŒÃ;\u0014\u0016{\u0002T¨™!«¦Áf½#Î\u0001\u0004O=ßÒ{#ÁlÏ",
+    "IsAdmin": true,
+    "Characters": []
   }
 ]

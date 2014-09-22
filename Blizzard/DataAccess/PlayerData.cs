@@ -36,11 +36,28 @@ namespace DataAccess
             }
         }
 
+        public void EditPlayer(string userName, bool isAdmin)
+        {
+            List<Player> players = GetAllPlayers();
+
+            Player p = players.FirstOrDefault(x => x.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            
+            if (p == null)
+            {
+                throw new Exception("This User doesn't exists");
+            }
+
+            p.IsAdmin = isAdmin;
+
+            Save(players);
+        }
+
         public Player GetPlayer(string userName, string password)
         {
-            Player p = null;
             lock (fileLock)
             {
+                Player p = null;
+
                 List<Player> players = GetAllPlayers();
 
                 p = players.FirstOrDefault(x => x.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase));
@@ -54,8 +71,9 @@ namespace DataAccess
                 {
                     throw new Exception("The password is incorrect");
                 }
+
+                return p;
             }
-            return p;
         }
 
         public Player GetPlayer(string userName)
@@ -73,6 +91,11 @@ namespace DataAccess
                 }
                 return p;
             }
+        }
+
+        public List<Player> GetPlayer()
+        {
+            return GetAllPlayers();
         }
 
         public void AddCharacter(string userName, Character character)
@@ -116,6 +139,8 @@ namespace DataAccess
                 c.Faction = character.Faction;
                 c.Race = character.Race;
                 c.Class = character.Class;
+                c.Level = character.Level;
+                c.Active = character.Active;
 
                 Save(players);
             }

@@ -22,9 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (Request.IsAuthenticated && ((Blizzard.Models.CustomPrincipal)User).IsAdmin)
+                    @if (((bool?)Session["OverRideIsAdmin"] == null && Request.IsAuthenticated && ((Blizzard.Models.CustomPrincipal)User).IsAdmin)
+                            || (bool?)Session["OverRideIsAdmin"] != null && (bool?)Session["OverRideIsAdmin"] == true)
                     {
-                        <li>@Html.ActionLink("Manage Accounts", "Account", "Manage")</li>
+                        <li>@Html.ActionLink("Manage Accounts", "View", "Admin")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

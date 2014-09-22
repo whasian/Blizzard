@@ -24,18 +24,14 @@ namespace Blizzard.Controllers
     {
         private string FILENAME = HostingEnvironment.MapPath(ConfigurationManager.AppSettings["LoginFileName"]);
         
-        //
-        // GET: /Account/Login
         public ActionResult Create()
         {
-            CharacterModel cm = new CharacterModel();
+            CharacterAddModel cm = new CharacterAddModel();
             return View(cm);
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
-        public ActionResult Create(CharacterModel model)
+        public ActionResult Create(CharacterAddModel model)
         {
             if (ModelState.IsValid)
             {
@@ -51,14 +47,10 @@ namespace Blizzard.Controllers
                 }
             }
 
-            
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/Login
-        public ActionResult Edit(Guid Id)
+        public ActionResult View(Guid Id)
         {
             CharacterRules cr = new CharacterRules(FILENAME, User.Identity.Name);
             CharacterModel cm = new CharacterModel();
@@ -67,31 +59,38 @@ namespace Blizzard.Controllers
             cm.Faction = c.Faction.ToString();
             cm.Race = c.Race.ToString();
             cm.Class = c.Class.ToString();
+            cm.Level = c.Level;
+            cm.Active = c.Active;
             return View(cm);
         }
 
-        //
-        // POST: /Account/Login
-        [HttpPost]
-        public ActionResult Edit(CharacterModel model, Guid id)
+        public ActionResult ActiveToggle(Guid Id)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    CharacterRules cr = new CharacterRules(FILENAME, User.Identity.Name);
-                    cr.EditCharacter(id, model.Name, model.Faction, model.Race, model.Class);
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (Exception e)
-                {
-                    ModelState.AddModelError("", e.Message);
-                }
-            }
+            CharacterRules cr = new CharacterRules(FILENAME, User.Identity.Name);
+            Character c = cr.GetCharacter(Id);
+            cr.EditCharacter(c.Id, c.Name, c.Faction.ToString(), c.Race.ToString(), c.Class.ToString(), c.Level, !c.Active);
 
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
+
+        //[HttpPost]
+        //public ActionResult Edit(CharacterModel model, Guid id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            CharacterRules cr = new CharacterRules(FILENAME, User.Identity.Name);
+        //            cr.EditCharacter(id, model.Name, model.Faction, model.Race, model.Class);
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ModelState.AddModelError("", e.Message);
+        //        }
+        //    }
+
+        //    return View(model);
+        //}
     }
 }

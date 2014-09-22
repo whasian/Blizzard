@@ -27,7 +27,7 @@
                 @foreach (var character in Model.Player.Characters)
                 {
                     <tr>
-                        <td>@Html.ActionLink(character.Name, "Edit", "Character", new { id = character.Id }, null)</td>
+                        <td>@Html.ActionLink(character.Name, "View", "Character", new { id = character.Id }, null)</td>
                         <td>@character.Faction</td>
                         <td>@character.Race</td>
                         <td>@character.Class</td>

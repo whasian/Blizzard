@@ -23,6 +23,12 @@ namespace BusinessRules
             p.AddPlayer(userName, password);
         }
 
+        public void EditPlayer(string userName, bool isAdmin)
+        {
+            PlayerData p = new PlayerData(FileName);
+            p.EditPlayer(userName, isAdmin);
+        }
+
         public Player GetPlayer(string userName, string password)
         {
             PlayerData p = new PlayerData(FileName);
@@ -33,6 +39,12 @@ namespace BusinessRules
         {
             PlayerData p = new PlayerData(FileName);
             return p.GetPlayer(userName);
+        }
+
+        public List<Player> GetPlayer()
+        {
+            PlayerData p = new PlayerData(FileName);
+            return p.GetPlayer();
         }
     }
 }
