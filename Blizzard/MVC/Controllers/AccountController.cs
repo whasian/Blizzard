@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Blizzard.Models;
 using System.Web.Security;
-using Business;
+using Core;
 using System.Web.Hosting;
 using System.Text;
 using Newtonsoft.Json;
@@ -24,8 +24,7 @@ namespace Blizzard.Controllers
     public class AccountController : Controller
     {
         private string FILENAME = HostingEnvironment.MapPath(ConfigurationManager.AppSettings["LoginFileName"]);
-        //
-        // GET: /Account/Login
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -33,12 +32,10 @@ namespace Blizzard.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +61,6 @@ namespace Blizzard.Controllers
                     string encTicket = FormsAuthentication.Encrypt(authTicket);
                     HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                     Response.Cookies.Add(faCookie);
-                    //FormsAuthentication.SetAuthCookie(p.UserName, true);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception e)
@@ -73,21 +69,15 @@ namespace Blizzard.Controllers
                 }
             }
 
-            
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -99,7 +89,12 @@ namespace Blizzard.Controllers
                 {
                     PlayerService ps = new PlayerService(FILENAME);
                     ps.AddPlayer(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+
+                    return Login(new LoginViewModel()
+                    {
+                        UserName = model.UserName,
+                        Password = model.Password
+                    });
                 }
                 catch(Exception e)
                 {
@@ -107,12 +102,9 @@ namespace Blizzard.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

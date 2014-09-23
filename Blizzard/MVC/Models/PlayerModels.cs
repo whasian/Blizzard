@@ -1,4 +1,4 @@
-﻿using Business;
+﻿using Core;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

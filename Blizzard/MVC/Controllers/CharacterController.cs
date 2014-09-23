@@ -10,12 +10,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Blizzard.Models;
 using System.Web.Security;
-using Business;
 using System.Web.Hosting;
 using System.Text;
 using Newtonsoft.Json;
 using Services;
 using System.Configuration;
+using Core;
 
 namespace Blizzard.Controllers
 {
@@ -86,6 +86,15 @@ namespace Blizzard.Controllers
                 ViewBag.PlayerFaction = "Alliance";
             }
 
+            if(p.Characters.Exists(x => x.Active && x.Level >= 55))
+            {
+                ViewBag.DeathKnightAvailable = true;
+            }
+            else
+            {
+                ViewBag.DeathKnightAvailable = false;
+            }
+
             return View(cm);
         }
 
@@ -103,25 +112,5 @@ namespace Blizzard.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-        //[HttpPost]
-        //public ActionResult Edit(CharacterModel model, Guid id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            CharacterRules cr = new CharacterRules(FILENAME, User.Identity.Name);
-        //            cr.EditCharacter(id, model.Name, model.Faction, model.Race, model.Class);
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            ModelState.AddModelError("", e.Message);
-        //        }
-        //    }
-
-        //    return View(model);
-        //}
     }
 }

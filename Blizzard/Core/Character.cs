@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business
+namespace Core
 {
     public enum CharacterRace { Orc, Tauren, BloodElf, Human, Gnome, Worgen }
     public enum CharacterClass { Warrior, Druid, DeathKnight, Mage }

@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Blizzard.Models;
 using System.Web.Security;
-using Business;
+using Core;
 using System.Web.Hosting;
 using System.Text;
 using Newtonsoft.Json;
@@ -71,7 +71,7 @@ namespace Blizzard.Controllers
                     {
                         Session["OverRideIsAdmin"] = model.Player.IsAdmin;
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("View", "Admin");
                 }
                 catch (Exception e)
                 {
@@ -115,7 +115,7 @@ namespace Blizzard.Controllers
                  {
                      CharacterService cs = new CharacterService(FILENAME, userName);
                      cs.EditCharacter(id, model.Name, model.Faction, model.Race, model.Class, model.Level, model.Active);
-                     return RedirectToAction("Index", "Home");
+                     return RedirectToAction("PlayerEdit", "Admin", new { id = userName });
                  }
                  catch (Exception e)
                  {

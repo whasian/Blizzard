@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
-using Business;
+using Repository;
+using Core;
 
 namespace Services
 {
@@ -81,10 +81,10 @@ namespace Services
                 throw new Exception("Class invalid");
             }
 
-            if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
-            {
-                throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
-            }
+            //if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
+            //{
+            //    throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
+            //}
 
             if (characters.Count(x => Active == true && x.Faction != cf && x.Id != id && x.Active == true) > 0)
             {
