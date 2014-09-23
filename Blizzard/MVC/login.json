@@ -1,0 +1,18 @@
+[
+  {
+    "UserName": "test",
+    "Password": "iÜŒÃ;\u0014\u0016{\u0002T¨™!«¦Áf½#Î\u0001\u0004O=ßÒ{#ÁlÏ",
+    "IsAdmin": true,
+    "Characters": [
+      {
+        "Id": "17966fbe-814e-42df-8027-45488c7ab608",
+        "Name": "testy",
+        "Level": 1,
+        "Faction": 0,
+        "Race": 2,
+        "Class": 3,
+        "Active": true
+      }
+    ]
+  }
+]
