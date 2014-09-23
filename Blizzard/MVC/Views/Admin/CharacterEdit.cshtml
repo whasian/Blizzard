@@ -23,7 +23,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Faction, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.Faction, Model.FactionItems, new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.Faction, Model.FactionItems, new { id = "FactionDDL", @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Faction)
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Class, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.Class, Model.ClassItems, new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.Class, Model.ClassItems, new { id = "ClassDDL", @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Class)
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         </section>
     </div>
     <div class="col-md-4">
-        <img id="RaceImage" width="100%" />
+        <img id="RaceImage" width="300px" height="500px" />
     </div>
 </div>
 @section Scripts {
@@ -72,12 +72,99 @@
 
     <script>
         $().ready(function () {
+            var factionDrop = $('#FactionDDL');
             var raceDrop = $('#RaceDDL');
-            $('#RaceImage').attr('src', GetRaceImage(raceDrop.val()))
+            var classDrop = $('#ClassDDL');
 
-            raceDrop.change(function () {
+            $().ready(function () {
                 $('#RaceImage').attr('src', GetRaceImage(raceDrop.val()))
+
+                factionDrop.change(function () {
+                    selectRace(factionDrop.val());
+                });
+
+                raceDrop.change(function () {
+                    $('#RaceImage').attr('src', GetRaceImage(raceDrop.val()));
+
+                    selectClass(raceDrop.val());
+                });
             });
+
+            function selectRace(faction) {
+                if (faction == "Horde") {
+                    $('#RaceDDL option:contains(Orc)').show();
+                    $('#RaceDDL option:contains(Tauren)').show();
+                    $('#RaceDDL option:contains(BloodElf)').show();
+                    $('#RaceDDL option:contains(Human)').hide();
+                    $('#RaceDDL option:contains(Gnome)').hide();
+                    $('#RaceDDL option:contains(Worgen)').hide();
+
+                    $("#RaceDDL").val("Orc");
+                }
+                else {
+                    $('#RaceDDL option:contains(Orc)').hide();
+                    $('#RaceDDL option:contains(Tauren)').hide();
+                    $('#RaceDDL option:contains(BloodElf)').hide();
+                    $('#RaceDDL option:contains(Human)').show();
+                    $('#RaceDDL option:contains(Gnome)').show();
+                    $('#RaceDDL option:contains(Worgen)').show();
+
+                    $("#RaceDDL").val("Human");
+                }
+
+                $('#RaceImage').attr('src', GetRaceImage(raceDrop.val()))
+            }
+
+            function selectClass(race) {
+                if (race == "Orc") {
+                    $('#ClassDDL option:contains(Warrior)').show();
+                    $('#ClassDDL option:contains(Druid)').hide();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Warrior");
+                }
+                else if (race == "Tauren") {
+                    $('#ClassDDL option:contains(Warrior)').show();
+                    $('#ClassDDL option:contains(Druid)').show();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Warrior");
+                }
+                else if (race == "BloodElf") {
+                    $('#ClassDDL option:contains(Warrior)').hide();
+                    $('#ClassDDL option:contains(Druid)').hide();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Mage");
+                }
+                else if (race == "Human") {
+                    $('#ClassDDL option:contains(Warrior)').show();
+                    $('#ClassDDL option:contains(Druid)').hide();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Warrior");
+                }
+                else if (race == "Gnome") {
+                    $('#ClassDDL option:contains(Warrior)').show();
+                    $('#ClassDDL option:contains(Druid)').hide();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Warrior");
+                }
+                else if (race == "Worgen") {
+                    $('#ClassDDL option:contains(Warrior)').show();
+                    $('#ClassDDL option:contains(Druid)').show();
+                    $('#ClassDDL option:contains(DeathKnight)').show();
+                    $('#ClassDDL option:contains(Mage)').show();
+
+                    $("#ClassDDL").val("Warrior");
+                }
+            }
         });
     </script>
 }

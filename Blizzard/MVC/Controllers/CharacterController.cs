@@ -26,6 +26,18 @@ namespace Blizzard.Controllers
         
         public ActionResult Create()
         {
+            PlayerService ps = new PlayerService(FILENAME);
+            var p = ps.GetPlayer(User.Identity.Name);
+
+            if (p.Characters.Exists(x => x.Faction == CharacterFaction.Horde && x.Active == true))
+            {
+                ViewBag.PlayerFaction = "Horde";
+            }
+            else if (p.Characters.Exists(x => x.Faction == CharacterFaction.Alliance && x.Active == true))
+            {
+                ViewBag.PlayerFaction = "Alliance";
+            }
+
             CharacterAddModel cm = new CharacterAddModel();
             return View(cm);
         }
@@ -61,14 +73,33 @@ namespace Blizzard.Controllers
             cm.Class = c.Class.ToString();
             cm.Level = c.Level;
             cm.Active = c.Active;
+
+            PlayerService ps = new PlayerService(FILENAME);
+            var p = ps.GetPlayer(User.Identity.Name);
+
+            if (p.Characters.Exists(x => x.Faction == CharacterFaction.Horde && x.Active == true))
+            {
+                ViewBag.PlayerFaction = "Horde";
+            }
+            else if (p.Characters.Exists(x => x.Faction == CharacterFaction.Alliance && x.Active == true))
+            {
+                ViewBag.PlayerFaction = "Alliance";
+            }
+
             return View(cm);
         }
 
         public ActionResult ActiveToggle(Guid Id)
         {
             CharacterService cs = new CharacterService(FILENAME, User.Identity.Name);
-            Character c = cs.GetCharacter(Id);
-            cs.EditCharacter(c.Id, c.Name, c.Faction.ToString(), c.Race.ToString(), c.Class.ToString(), c.Level, !c.Active);
+            try
+            {
+                Character c = cs.GetCharacter(Id);
+                cs.EditCharacter(c.Id, c.Name, c.Faction.ToString(), c.Race.ToString(), c.Class.ToString(), c.Level, !c.Active);
+            }
+            catch(Exception e)
+            {
+            }
 
             return RedirectToAction("Index", "Home");
         }

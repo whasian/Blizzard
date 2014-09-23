@@ -51,7 +51,14 @@
             }
             else
             {
-                <span>@Html.ActionLink("Activate Character", "ActiveToggle", "Character", new { Id = Url.RequestContext.RouteData.Values["Id"] }, new { @class = "col-md-12" })</span>
+                if(ViewBag.PlayerFaction == null || ViewBag.PlayerFaction == Model.Faction.ToString())
+                {
+                    <span>@Html.ActionLink("Activate Character", "ActiveToggle", "Character", new { Id = Url.RequestContext.RouteData.Values["Id"] }, new { @class = "col-md-12" })</span>
+                }
+                else
+                {
+                    <span>Activate Character (Cannot activate this character because he's part of the @Model.Faction)</span>
+                }
             }
         </div>
     </div>

@@ -47,7 +47,7 @@ namespace Services
                 throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
             }
 
-            if(characters.Count(x => x.Faction != cf) > 0)
+            if(characters.Count(x => x.Faction != cf && x.Active == true) > 0)
             {
                 throw new Exception("All Characters must be part of the " + characters.First().Faction.ToString());
             }
@@ -86,7 +86,7 @@ namespace Services
                 throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
             }
 
-            if (characters.Count(x => x.Faction != cf && x.Id != id) > 0)
+            if (characters.Count(x => Active == true && x.Faction != cf && x.Id != id && x.Active == true) > 0)
             {
                 throw new Exception("All Characters must be part of the " + characters.First().Faction.ToString());
             }
