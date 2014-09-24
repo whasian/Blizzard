@@ -37,7 +37,7 @@ namespace Core
 
         public Character(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
         {
-            ValidateCharacter(characterFaction, characterRace, characterClass);
+            ValidateCharacter(name, characterFaction, characterRace, characterClass);
 
             this.Id = Guid.NewGuid();
             this.Name = name;
@@ -66,8 +66,13 @@ namespace Core
             this.Active = true;
         }
 
-        private void ValidateCharacter(CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
+        private void ValidateCharacter(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
         {
+            if(String.IsNullOrEmpty(name))
+            {
+                throw new Exception("Character must have a name");
+            }
+
             #region Faction Validation
             
             if(characterFaction == CharacterFaction.Horde)

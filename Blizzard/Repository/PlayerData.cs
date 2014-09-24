@@ -115,13 +115,13 @@ namespace Repository
                     throw new Exception("This User doesn't exists");
                 }
 
-                players.First(x => x.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase)).Characters.Add(character);
+                players.First(x => x.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase)).AddCharacter(character);
 
                 Save(players);
             }
         }
 
-        public void EditCharacter(string userName, Guid id, Character character)
+        public void EditCharacter(string userName, Character character)
         {
             lock (fileLock)
             {
@@ -134,19 +134,7 @@ namespace Repository
                     throw new Exception("This User doesn't exists");
                 }
 
-                Character c = p.Characters.FirstOrDefault(x => x.Id == id);
-
-                if(c == null)
-                {
-                    throw new Exception("This Character doesn't exists");
-                }
-
-                c.Name = character.Name;
-                c.Faction = character.Faction;
-                c.Race = character.Race;
-                c.Class = character.Class;
-                c.Level = character.Level;
-                c.Active = character.Active;
+                p.EditCharacter(character);
 
                 Save(players);
             }

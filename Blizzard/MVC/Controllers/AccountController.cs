@@ -109,6 +109,7 @@ namespace Blizzard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session.Abandon();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

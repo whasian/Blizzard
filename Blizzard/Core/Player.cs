@@ -20,27 +20,59 @@ namespace Core
 
         public Player(string userName, string password)
         {
+            if(String.IsNullOrEmpty(userName))
+            {
+                throw new Exception("Player must have a username");
+            }
+
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new Exception("Player must have a password");
+            }
+
             this.UserName = userName;
             this.Password = password;
             this.Characters = new List<Character>();
         }
 
-        public Character AddCharacter(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
+        public void AddCharacter(Character character)
         {
-            if(characterClass == CharacterClass.DeathKnight)
+            if(character.Class == CharacterClass.DeathKnight)
             {
-                if(!this.Characters.Exists(x => x.Level >= 55))
+                if(!this.Characters.Exists(x => x.Level >= 55 && x.Active))
                 {
                     throw new Exception("Cannot create a Death Knight untill one of your Characters is at least level 55");
                 }
             }
 
-            if(this.Characters.Count > 0 && this.Characters.Exists(x => x.Faction == characterFaction))
+            if(this.Characters.Count > 0 && this.Characters.Exists(x => x.Faction != character.Faction && x.Active))
             {
                 throw new Exception("Stay loyal to your faction and only create characters within the same faction");
             }
 
-            return new Character(name, characterFaction, characterRace, characterClass);
+            this.Characters.Add(character);
+        }
+
+        public void EditCharacter(Character character)
+        {
+            Character c = this.Characters.FirstOrDefault(x => x.Id == character.Id);
+
+            if (c == null)
+            {
+                throw new Exception("This Character does not exist");
+            }
+
+            if (this.Characters.Count > 0 && this.Characters.Exists(x => character.Active && x.Faction != character.Faction && x.Active))
+            {
+                throw new Exception("Stay loyal to your faction and only create characters within the same faction");
+            }
+
+            c.Name = character.Name;
+            c.Faction = character.Faction;
+            c.Race = character.Race;
+            c.Class = character.Class;
+            c.Level = character.Level;
+            c.Active = character.Active;
         }
 
         public void Delete(Guid characterId)
