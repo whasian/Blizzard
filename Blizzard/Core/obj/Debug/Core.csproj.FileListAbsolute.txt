@@ -2,3 +2,4 @@ C:\repos\Blizzard\Blizzard\Core\bin\Debug\ClassLibrary1.dll
 C:\repos\Blizzard\Blizzard\Core\bin\Debug\ClassLibrary1.pdb
 C:\repos\Blizzard\Blizzard\Core\obj\Debug\ClassLibrary1.dll
 C:\repos\Blizzard\Blizzard\Core\obj\Debug\ClassLibrary1.pdb
+C:\repos\Blizzard\Blizzard\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache

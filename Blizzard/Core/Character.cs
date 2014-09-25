@@ -35,7 +35,7 @@ namespace Core
         public CharacterClass Class { get; set; }
         public bool Active { get; set; }
 
-        public Character(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
+        public  Character(string name, CharacterFaction characterFaction, CharacterRace characterRace, CharacterClass characterClass)
         {
             ValidateCharacter(name, characterFaction, characterRace, characterClass);
 

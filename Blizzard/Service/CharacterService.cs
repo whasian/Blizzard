@@ -42,11 +42,6 @@ namespace Services
                 throw new Exception("Class invalid");
             }
 
-            if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
-            {
-                throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
-            }
-
             if(characters.Count(x => x.Faction != cf && x.Active == true) > 0)
             {
                 throw new Exception("All Characters must be part of the " + characters.First().Faction.ToString());
@@ -80,11 +75,6 @@ namespace Services
             {
                 throw new Exception("Class invalid");
             }
-
-            //if(cc == CharacterClass.DeathKnight && !characters.Exists(x => x.Active && x.Level >= 55))
-            //{
-            //    throw new Exception("Must have another Character level 55 or higher to be a Death Knight");
-            //}
 
             Character newCharacter = new Character(name, cf, cr, cc);
             newCharacter.Id = id;
